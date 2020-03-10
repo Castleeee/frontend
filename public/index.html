@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>icon.svg">
+    <title>查看搜索</title>
+    <style>
+      .removescroll{
+          overflow: hidden;
+      }
+      #Loading {
+        margin: 20% auto;
+        width: 10%;
+        height: 60px;
+        text-align: center;
+        font-size: 10px;
+      }
+
+      #Loading > div {
+        background-color: #234ed8;
+        height: 100%;
+        width: 6px;
+        display: inline-block;
+        -webkit-animation: stretchDelay 1.2s infinite ease-in-out;
+        animation: stretchDelay 1.2s infinite ease-in-out;
+      }
+
+      #Loading .rect2 {
+        -webkit-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+      }
+
+      #Loading .rect3 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+      }
+
+      #Loading .rect4 {
+        -webkit-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+      }
+
+      #Loading .rect5 {
+        -webkit-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+      }
+
+      @-webkit-keyframes stretchDelay {
+        0%, 40%, 100% {
+          -webkit-transform: scaleY(0.4)
+        }
+        20% {
+          -webkit-transform: scaleY(1.0)
+        }
+      }
+
+      @keyframes stretchDelay {
+        0%, 40%, 100% {
+          transform: scaleY(0.4);
+          -webkit-transform: scaleY(0.4);
+        }
+        20% {
+          transform: scaleY(1.0);
+          -webkit-transform: scaleY(1.0);
+        }
+      }
+    </style>
+
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but justdoit_front doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="Loading">
+        <div class="rect1"></div>&nbsp;
+        <div class="rect2"></div>&nbsp;
+        <div class="rect3"></div>&nbsp;
+        <div class="rect4"></div>&nbsp;
+        <div class="rect5"></div>
+        <br/>
+        <B style='padding-left:0;font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;font-size: 30px'>Loading....</B>
+    </div>
+    <div id="app">
+
+
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
+
