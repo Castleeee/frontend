@@ -5,7 +5,7 @@
       icon="ios-search"
       placeholder="  你搜你🐴 呢?  "
       class="searchClass optionClass iconClass" >
-      <div class="demo-auto-complete-item" v-for="item in data4" :key="item" >
+      <div class="demo-auto-complete-item" v-for="item in data4" :key="item.title" >
         <div class="demo-auto-complete-group">
           <span>{{ item.title }}</span>
           <a href="https://www.google.com/search?q=iView" target="_blank">更多</a>

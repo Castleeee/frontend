@@ -1,8 +1,11 @@
 <template>
   <div class="homeBack">
-    <h1>This is an about page</h1>
+    <h1>about page</h1>
   </div>
 </template>
+<script>
+console.log('fuck')
+</script>
 <style scoped>
   /*背景图*/
 

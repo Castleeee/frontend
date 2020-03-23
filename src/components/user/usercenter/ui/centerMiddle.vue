@@ -8,6 +8,7 @@
                   <MenuItem name="1-1">个人资料</MenuItem>
                   <MenuItem name="1-2">历史记录</MenuItem>
                   <MenuItem name="1-3">我的博客</MenuItem>
+<!-- 占位用的 -->
                 <MenuGroup title=" ">
                 </MenuGroup>
                 <MenuGroup title=" ">
@@ -22,6 +23,7 @@
                 </MenuGroup>
                 <MenuGroup title=" ">
                 </MenuGroup>
+<!-- 占位结束 -->
               </Menu>
             </Sider>
             </Layout>
