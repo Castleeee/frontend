@@ -1,8 +1,9 @@
 import axios from 'axios' // 引入axios
 import router from '../router'
-import { Message, LoadingBar } from 'iview'
+import { Message, LoadingBar } from 'iview' // 用来处理刷新token后重新请求的自定义变量
+// import qs from 'querystring' // 避免两次请求
 axios.defaults.timeout = 5000
-axios.defaults.isRetryRequest = false // 用来处理刷新token后重新请求的自定义变量
+axios.defaults.isRetryRequest = false
 
 var backip = 'http://127.0.0.1:8000'
 let instance = axios.create({// 创建axios实例
@@ -19,12 +20,16 @@ function RefreshToken () {
 instance.interceptors.request.use(
   config => {
     console.log('请求钩子')
+
     var access = localStorage.getItem('access')
     if (access !== null) { // 判断是否存在token，如果存在的话，则每个http header都加上token
       console.log('开始钩子')// todo 处理
       config.headers.Authorization = `Bearer ` + access// 请求头加上token
       console.log(localStorage.getItem('access'))
     }
+    // if (config.method === 'post') { // 避免两次请求
+    //   config.data = qs.stringify(config.data)
+    // }
     return config
   },
   err => {

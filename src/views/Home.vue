@@ -16,14 +16,16 @@
       <Col span="8"><search-frame ></search-frame></Col>
       <Col span="8">&nbsp;</Col>
     </Row>
-
+    <user-avatar></user-avatar>
   </div>
 </template>
 <script>
 import searchFrame from '@/components/search/searchFrame.vue'
+import userAvatar from '../components/user/usercenter/userAvatar'
 export default {
   components: {
-    searchFrame
+    searchFrame,
+    userAvatar
   }
 }
 </script>

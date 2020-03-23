@@ -23,10 +23,10 @@
               更多
               <Icon type="ios-arrow-down"></Icon>
             </a>
-<!--            <DropdownMenu slot="list">-->
-<!--              <DropdownItem><a href="/#/blogs">博客收录</a></DropdownItem>-->
-<!--              <DropdownItem><a href="/#/searchHistory">历史记录</a></DropdownItem>-->
-<!--            </DropdownMenu>-->
+            <DropdownMenu slot="list">
+              <DropdownItem><a href="/#/blogs/">博客收录</a></DropdownItem>
+              <DropdownItem><a href="/#/about">关于</a></DropdownItem>
+            </DropdownMenu>
           </Dropdown>
         </Col>
         <!--首页渲染 -->

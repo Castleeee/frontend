@@ -41,6 +41,14 @@ var router = new Router({
       }
     },
     {
+      path: '/changeEmail', // 更改邮箱界面
+      name: 'changeEmail',
+      component (resolve) { require(['./components/user/changeEmail/changeEmail.vue'], resolve) },
+      meta: {
+        requireAuth: true // 添加该字段，表示进入这个路由只有没登录的才能访问
+      }
+    },
+    {
       path: '/usercenter',
       name: 'usercenter',
       component (resolve) {

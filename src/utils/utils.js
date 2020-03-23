@@ -56,6 +56,29 @@ Vue.prototype.$validate_findback = function (code, email, password, issend) { //
     }
   }
 }
+// 更换邮箱验证器
+Vue.prototype.$validate_changeemail = function (code, email, issend) { // 验证最后的参数用来判别是发送验证码还是提交
+  if (issend) {
+    if (email.indexOf('@') === -1 || email.length < 7) { // 验证邮箱
+      this.$Message.error('邮箱不正确！')
+      return false
+    }
+    return true
+  } else {
+    if (email.indexOf('@') === -1 || email.length < 7) { // 验证邮箱
+      this.$Message.error('邮箱不正确！')
+      return false
+    } else {
+      if (code.length === 10 && RegExp('^[a-zA-Z0-9]*$').test(code)) { // 验证验证码
+        return true
+      } else {
+        this.$Message.error('验证码错误')
+        return false
+      }
+    }
+  }
+}
+
 // 修改密码验证器
 Vue.prototype.$validate_changepwd = function (pwd, npwd, npwd1) { // 修改密码验证函数
   if (pwd.length >= 8 && npwd.length >= 8 && npwd1.length >= 8 && npwd === npwd1) {
@@ -133,4 +156,20 @@ Vue.prototype.$handleAxiosErr = function (err) { // 错误提示函数
       this.$Message.error('错误' + err.response.status + ':' + err.response.data.detail)
   }
   this.$LoadingBar.error()// 加载错误进度条动画
+}
+// 获取用户信息存储到vuex
+Vue.prototype.$getProfile = function () {
+  this.$axios.get(this.$backip + '/user/profile/').then((res) => {
+    var data = res.data
+    for (var k in data) {
+      if (data[k] === null || data[k] === '') {
+        data[k] = '未设置'
+      } else if (data[k] === false) {
+        data[k] = '否'
+      } else if (data[k] === true) {
+        data[k] = '是'
+      }
+    }
+    this.$store.commit('storeProfile', data)
+  })
 }

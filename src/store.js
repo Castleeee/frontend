@@ -5,11 +5,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // islogin: sessionStorage.getItem('isLogin'),
-    // username: sessionStorage.getItem('username')
+    profile: {
+      id: null,
+      username: '',
+      email: '',
+      nickname: null,
+      date_joined: '',
+      is_staff: false,
+      qq: null
+    }
   },
 
   mutations: {
+    storeProfile (state, payload) {
+      console.log(payload)
+      state.profile = payload
+    }
     // 写法与getters相类似
     // 组件想要对于vuex 中的数据进行的处理
     // 组件中采用this.$store.commit('方法名') 的方式调用，实现充分解耦

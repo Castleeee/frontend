@@ -121,7 +121,7 @@ export default {
           }).then((res) => { // post成功
           this.$Message.success('Success!')// 告诉用户登录成功
           this.$storeToken(this.username, res.data.access, res.data.refresh)
-          this.$router.push('/')// 返回到首页
+          this.$router.push('/usercenter')// 返回到首页
         })
       }
     },

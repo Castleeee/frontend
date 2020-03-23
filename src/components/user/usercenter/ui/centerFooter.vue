@@ -1,5 +1,8 @@
 <template>
     <div class="full">
+      <div style="height: 90%"></div>
+      <p style="font-size: 15px;">@ooowl版权所有</p>
+
     </div>
 </template>
 
