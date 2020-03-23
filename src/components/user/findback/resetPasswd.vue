@@ -2,18 +2,20 @@
   <div class="full">
     <div :style=bg_img
          class="full">
-      <register-card class="cardclass"></register-card>
+    <findbackCard class="cardclass"></findbackCard>
+      <Button style="bottom: 20px;right: 20px; position: fixed;" type="info" ghost shape="circle" to="/Login">回去登录</Button>
+
     </div>
   </div>
 </template>
 
 <script>
-import registerCard from '@/components/user/register/registerCard.vue'
+import findbackCard from '@/components/user/findback/findbackCard.vue'
 export default {
   components: {
-    registerCard
+    findbackCard
   },
-  name: 'regValidateEmali',
+  name: 'backVlidateEmali',
   data () {
     return {
       bg_img: {
@@ -37,7 +39,7 @@ export default {
   }
   .cardclass{
     padding-top: 5%;
-    padding-bottom: auto;
+    /*padding-bottom: auto;*/
     height:7%;
     width:40%;
     margin:auto;

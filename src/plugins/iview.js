@@ -26,7 +26,9 @@ import {
   Alert,
   Modal,
   Dropdown,
-  DropdownItem
+  DropdownItem,
+  AutoComplete,
+  Option
 } from 'iview'
 
 import 'iview/dist/styles/iview.css'
@@ -54,6 +56,8 @@ Vue.component('Modal', Modal)
 Vue.component('Tooltip', Tooltip)
 Vue.component('Dropdown', Dropdown)
 Vue.component('DropdownItem', DropdownItem)
+Vue.component('AutoComplete', AutoComplete)
+Vue.component('Option', Option)
 Vue.prototype.$Message = Message
 Vue.prototype.$Notice = Notice
 Vue.prototype.$LoadingBar = LoadingBar

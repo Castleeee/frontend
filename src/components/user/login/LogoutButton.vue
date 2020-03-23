@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     ok () {
-      this.$store.commit('REMOVE_COUNT')
+      this.$removeToken()
       this.$Message.success('注销成功')
       this.$router.push({ path: '/' })
     },

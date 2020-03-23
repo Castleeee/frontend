@@ -5,12 +5,10 @@
             <Sider hide-trigger :style="{background: '#fff'}">
               <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
 
-                  <MenuItem name="1-1">Option 1</MenuItem>
-                  <MenuItem name="1-2">Option 2</MenuItem>
-                  <MenuItem name="1-3">Option 3</MenuItem>
-                  <MenuItem name="2-1">Option 1</MenuItem>
-                  <MenuItem name="2-2">Option 2</MenuItem>
-                <MenuGroup title="">
+                  <MenuItem name="1-1">个人资料</MenuItem>
+                  <MenuItem name="1-2">历史记录</MenuItem>
+                  <MenuItem name="1-3">我的博客</MenuItem>
+                <MenuGroup title=" ">
                 </MenuGroup>
                 <MenuGroup title=" ">
                 </MenuGroup>

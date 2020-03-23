@@ -2,18 +2,18 @@
   <div class="full">
     <div :style=bg_img
          class="full">
-    <findbackCard class="cardclass"></findbackCard>
+      <change-pwd-card class="cardclass"></change-pwd-card>
     </div>
   </div>
 </template>
 
 <script>
-import findbackCard from '@/components/user/findback/findbackCard.vue'
+import changePwdCard from '@/components/user/changepwd/changePwdCard.vue'
 export default {
   components: {
-    findbackCard
+    changePwdCard
   },
-  name: 'backVlidateEmali',
+  name: 'resetPasswd',
   data () {
     return {
       bg_img: {
@@ -37,7 +37,7 @@ export default {
   }
   .cardclass{
     padding-top: 5%;
-    padding-bottom: auto;
+    /*padding-bottom: auto;*/
     height:7%;
     width:40%;
     margin:auto;

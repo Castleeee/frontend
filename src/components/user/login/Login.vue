@@ -4,7 +4,7 @@
       class="full">
       <login-card class="cardclass"></login-card>
 
-        <Button style="bottom: 20px;right: 20px; position: fixed;" type="info" ghost shape="circle" to="/backValidateEmail">找回密码</Button>
+        <Button style="bottom: 20px;right: 20px; position: fixed;" type="info" ghost shape="circle" to="/resetPasswd">找回密码</Button>
       </div>
     </div>
 </template>
@@ -47,7 +47,7 @@ export default {
 }
 .cardclass{
   padding-top: 5%;
-  padding-bottom: auto;
+  /*padding-bottom:auto;*/
   height:7%;
   width:40%;
   margin:auto;
