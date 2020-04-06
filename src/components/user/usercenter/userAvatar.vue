@@ -1,7 +1,7 @@
 <template>
     <div>
-      <Button style="width:0;height: 0;" @click="sider">
-        <Avatar style="top: 40px;right: 50px; position: fixed;"
+      <Button style="width:1px;height: 1px;margin-top: -5000px" @click="sider">
+        <Avatar style="top: 15px;right: 50px; position: fixed;"
                 src="https://i.loli.net/2017/08/21/599a521472424.jpg"
                 size=large
         />

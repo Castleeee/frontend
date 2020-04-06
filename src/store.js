@@ -13,6 +13,16 @@ export default new Vuex.Store({
       date_joined: '',
       is_staff: false,
       qq: null
+    },
+    blog: {
+      blogName: '',
+      blogUrl: 'http://',
+      introduction: ''
+    }
+  },
+  getters: {
+    getId (state) {
+      return state.profile.id
     }
   },
 
@@ -20,6 +30,10 @@ export default new Vuex.Store({
     storeProfile (state, payload) {
       console.log(payload)
       state.profile = payload
+    },
+    storeBlog (state, payload) {
+      console.log(payload)
+      state.blog = payload
     }
     // 写法与getters相类似
     // 组件想要对于vuex 中的数据进行的处理

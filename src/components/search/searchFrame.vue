@@ -1,78 +1,98 @@
 <template>
   <div>
+    <!-- todo 自动补全数据放到后端 -->
     <AutoComplete
-      v-model="value4"
+      @on-search="autocomplete"
+      @keyup.enter.native="submit('all')"
+      v-model="kwords"
       icon="ios-search"
       placeholder="  你搜你🐴 呢?  "
       class="searchClass optionClass iconClass" >
-      <div class="demo-auto-complete-item" v-for="item in data4" :key="item.title" >
+      <div class="demo-auto-complete-item" >
         <div class="demo-auto-complete-group">
-          <span>{{ item.title }}</span>
-          <a href="https://www.google.com/search?q=iView" target="_blank">更多</a>
+          <span>{{ tip[0].title }}</span>
+          <a @click="submit('article')" target="_blank">更多</a>
         </div >
-        <Option v-for="option in item.children" :value="option.title" :key="option.title" style="height: 35px">
-          <span class="demo-auto-complete-title">{{ option.title }}</span>
-          <span class="demo-auto-complete-count">{{ option.count }} 人关注</span>
+        <Option v-for="(option,index) in tip[0].children" :value="option.title" :key="option.title" style="height: 35px">
+          <span class="demo-auto-complete-title" @click="optionSubmit(0,index,'article')">{{ option.title }}</span>
+          <span class="demo-auto-complete-count">{{ option.count }}个结果</span>
+        </Option>
+        <div class="demo-auto-complete-group">
+          <span>{{ tip[1].title }}</span>
+          <a @click="submit('question')" target="_blank">更多</a>
+        </div >
+        <Option v-for="(option,index) in tip[1].children" :value="option.title" :key="option.title" style="height: 35px">
+          <span class="demo-auto-complete-title" @click="optionSubmit(1,index,'question')">{{ option.title }}</span>
+          <span class="demo-auto-complete-count">{{ option.count }}个结果</span>
         </Option>
       </div>
       <Button v-click-ctrl
-              to="https://www.google.com/search?q=iView"
+              @click="submit('all')"
               style="width: 20%"
               type="warning"><B>搜索</B>
       </Button>
     </AutoComplete>
-
   </div>
 </template>
 
 <script>
 export default {
   name: 'searchFrame',
+  props: ['kw', 'isrespage'],
   data () {
     return {
-      value4: '',
-      data4: [
+      kwords: this.kw,
+      type: 'all',
+      tip: [
         {
-          title: '话题',
+          title: '文章',
+          type: 'article',
           children: [
             {
-              title: 'iView',
-              count: 10000
-
-            },
-            {
-              title: 'iView UI',
-              count: 10600
-
+              title: ' ',
+              count: 0
             }
           ]
         },
         {
           title: '问题',
+          type: 'question',
           children: [
             {
-              title: 'iView UI 有多好',
-              count: 60100
-
-            },
-            {
-              title: 'iView 是啥',
-              count: 30010
-
-            }
-          ]
-        },
-        {
-          title: '文章',
-          children: [
-            {
-              title: 'iView 是一个设计语言',
-              count: 100000
-
+              title: '',
+              count: 0
             }
           ]
         }
       ]
+    }
+  },
+  methods: {
+    optionSubmit (index1, index2, type) {
+      console.log(index1, index2, type)
+      this.kwords = this.tip[index1].children[index2].title
+      this.submit(type)
+      if (this.isrespage === 1) {
+        console.log('aaaaa')
+        location.reload()
+      }
+    },
+    submit (type) {
+      this.type = type
+      if (this.kwords !== '') {
+        console.log(this.kwords, this.type)
+        this.$router.push({ path: '/search', query: { kwords: this.kwords, type: this.type } })
+      }
+    },
+    autocomplete (value) {
+      console.log(value)
+      if (value === '') { console.log('kong') }
+      this.$axios.get(this.$backip + '/search/autocomplete/' + value + '/')
+        .then((res) => {
+          this.tip[0].children = res.data.article
+          console.log(res.data.question)
+          this.tip[1].children = res.data.question
+        })// todo 对接后台接口自动补全
     }
   }
 }
@@ -81,8 +101,9 @@ export default {
 
 <style scoped>
   .searchClass >>> .ivu-input{
+    letter-spacing:1px;
     width:100%;
-    height: 44px;
+    height: 40px;
     border-radius: 24px;
     font-size: 20px;
   }
@@ -93,7 +114,7 @@ export default {
     font-size: 27px;
     text-align: left;
     right: 1%;
-    bottom: 18%;
+    bottom: 14%;
   }
   .demo-auto-complete-item{
     position: static;
@@ -113,11 +134,14 @@ export default {
     float: right;
   }
   .demo-auto-complete-count{
+    width: 20%;
     float: right;
     color: #999;
   }
   .demo-auto-complete-title{
     font-size: 15px;
+    text-align: left;
+    width: 80%;
     float:left;
   }
 

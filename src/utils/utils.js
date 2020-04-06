@@ -90,9 +90,10 @@ Vue.prototype.$validate_changepwd = function (pwd, npwd, npwd1) { // 修改密�
   }
 }
 // 登录注销存储token
-Vue.prototype.$storeToken = function (username, access, refresh) { // 登录
+Vue.prototype.$storeToken = function (username, access, refresh, id) { // 登录
   console.log('username:', username, 'access:', access, 'refresh:', refresh)
   localStorage.setItem('username', username)
+  localStorage.setItem('id', id)
   localStorage.setItem('access', access)
   localStorage.setItem('refresh', refresh)
   localStorage.setItem('isLogin', true)// todo token存在session中
@@ -100,6 +101,7 @@ Vue.prototype.$storeToken = function (username, access, refresh) { // 登录
 Vue.prototype.$removeToken = function () { // 注销
   localStorage.removeItem('access')
   localStorage.removeItem('refresh')
+  localStorage.removeItem('id')
   localStorage.setItem('isLogin', false)// todo 清除token
   localStorage.removeItem('username')
 }
@@ -171,5 +173,59 @@ Vue.prototype.$getProfile = function () {
       }
     }
     this.$store.commit('storeProfile', data)
+    localStorage.setItem('id', data.id)
+    this.$getBlog(data.id)
   })
 }
+// 获取用户博客介绍存储到vuex
+Vue.prototype.$getBlog = function (id) {
+  console.log('id:' + localStorage.getItem('id'))
+  this.$axios.get(this.$backip + '/user/blog/' + id + '/').then((res) => {
+    var data = res.data
+    for (var k in data) {
+      if (data[k] === null || data[k] === '') {
+        data[k] = '未设置'
+      } else if (data[k] === false) {
+        data[k] = '否'
+      } else if (data[k] === true) {
+        data[k] = '是'
+      }
+    }
+    this.$store.commit('storeBlog', data)
+  })
+}
+Vue.filter('NumFormat', function (value) { // 带逗号的过滤器
+  if (!value) return '0.00'
+
+  /* 原来用的是Number(value).toFixed(0)，这样取整时有问题，例如0.51取整之后为1，感谢Nils指正 */
+  /* 后来改成了 Number(value)|0,但是输入超过十一位就为负数了，具体见评论 */
+  var intPart = Number(value) - Number(value) % 1 // 获取整数部分（这里是windy93的方法）
+  var intPartFormat = intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') // 将整数部分逢三一断
+
+  var floatPart = '.00' // 预定义小数部分
+  var value2Array = value.toString().split('.')
+
+  //= 2表示数据有小数位
+  if (value2Array.length === 2) {
+    floatPart = value2Array[1].toString() // 拿到小数部分
+
+    if (floatPart.length === 1) { // 补0,实际上用不着
+      return intPartFormat + '.' + floatPart + '0'
+    } else {
+      return intPartFormat + '.' + floatPart
+    }
+  } else {
+    return intPartFormat
+  }
+})
+Vue.filter('TypeFormat', function (value) { // 格式化文章类型
+  if (value === 'q') {
+    return '问题'
+  }
+  if (value === 'a') {
+    return '文章'
+  }
+})
+// Vue.filter('TagFormat', function (value) { // 格式化标签列表
+//   return value.join(',')
+// })

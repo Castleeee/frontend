@@ -26,9 +26,12 @@ import {
   Alert,
   Modal,
   Dropdown,
+  DropdownMenu,
   DropdownItem,
   AutoComplete,
-  Option
+  Option,
+  Page,
+  Table
 } from 'iview'
 
 import 'iview/dist/styles/iview.css'
@@ -58,6 +61,9 @@ Vue.component('Dropdown', Dropdown)
 Vue.component('DropdownItem', DropdownItem)
 Vue.component('AutoComplete', AutoComplete)
 Vue.component('Option', Option)
+Vue.component('Page', Page)
+Vue.component('Table', Table)
+Vue.component('DropdownMenu', DropdownMenu)
 Vue.prototype.$Message = Message
 Vue.prototype.$Notice = Notice
 Vue.prototype.$LoadingBar = LoadingBar

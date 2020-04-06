@@ -2,7 +2,7 @@
     <div class="cardclass">
       <Row type="flex" align="middle" style="height: 17%" >
         <Col span="1">&nbsp;</Col>
-        <Col span="1"><img class="logo" src="../../../../assets/all/paper-plane.svg" alt=" ：）" /></Col>
+        <Col span="1"><a href="/"><img class="logo" src="../../../../assets/all/paper-plane.svg" alt=" ：）" /></a></Col>
         <Col span="1">&nbsp;</Col>
         <Col span="4"><B  style="color:#2b85e4;font-size: 25px" class="hrefTexe">用户资料</B></Col>
         <Col span="5">&nbsp;</Col>

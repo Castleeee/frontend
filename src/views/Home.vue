@@ -13,18 +13,21 @@
     <br>
     <Row style="height: 10%;width:100%;position: fixed">
       <Col span="8">&nbsp;</Col>
-      <Col span="8"><search-frame ></search-frame></Col>
+      <Col span="8"><search-frame k="撒大哥"></search-frame></Col>
       <Col span="8">&nbsp;</Col>
     </Row>
     <user-avatar></user-avatar>
+    <searchFooter :issearch=true style="position: fixed"></searchFooter>
   </div>
 </template>
 <script>
 import searchFrame from '@/components/search/searchFrame.vue'
+import searchFooter from '@/components/search/result/searchFooter.vue'
 import userAvatar from '../components/user/usercenter/userAvatar'
 export default {
   components: {
     searchFrame,
+    searchFooter,
     userAvatar
   }
 }
@@ -33,7 +36,7 @@ export default {
   /*背景图*/
 
   .homeBack{
-    height: 100%;
+    height: 95%;
     width: 100%;
     background:url("../assets/all/homeBack.svg") no-repeat left center;
 
